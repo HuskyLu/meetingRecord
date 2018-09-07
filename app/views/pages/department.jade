@@ -1,0 +1,28 @@
+extends ../layout
+
+block content
+	.container
+		.row
+			.col-md-1
+			.col-md-10
+				.bs-docs-section
+					h2#overview.page-header 部门
+					.table-responsive
+						table.table.table-hover.table-striped.text-center
+							thead
+								tr
+									th.text-center(width="10%") 部门
+									th.text-center(width="20%") 创建时间
+									th.text-center(width="20%") 最近修改时间
+									th.text-center(width="30%") 操作
+							tbody
+								if departments
+									each department in departments
+										tr(class="department-id-#{department._id}")
+											td #{department.department}
+											td #{moment(user.meta.createAt).format('YYYY/MM/DD')}
+											td #{moment(user.meta.updateAt).format('YYYY/MM/DD')}
+											td
+												a.btn.btn-primary(href="") 修改
+												span &nbsp;&nbsp;
+												button.btn.btn-danger.delete(type="button",data-id="#{department._id}") 删除

@@ -1,0 +1,86 @@
+extends ../layout
+
+block content
+	.container
+		.row
+			if department == '老师/常委'
+				each record in records
+					.col-md-2
+						.panel.panel-primary
+							.panel-heading
+								h3 #{record.department}会议记录
+							.panel-body
+								.bs-docs-section
+									.table-responsive
+										table.table.table-hover.table-striped
+											thead
+												tr
+													th(width="20%") 名称
+													th(width="20%") 创建时间
+													th(width="20%") 修改时间
+											tbody
+												if record.records && record.records.length > 0
+													each item in record.records
+														tr
+															th #{item.name}
+															th #{moment(item.createAt).format('YYYY/MM/DD')}
+															th #{moment(item.updateAt).format('YYYY/MM/DD')}
+			else
+				each record in records
+					.bs-docs-section
+						h2#overview.page-header 记录
+						.table-responsive
+							table.table.table-hover.table-striped
+								thead
+									tr
+										th(width="20%") 会议记录名称
+										th(width="20%") 记录者
+										th(width="20%") 创建时间
+										th(width="20%") 修改时间
+										th(width="20%") 操作
+								tbody
+									if record.records && record.records.length > 0
+										each item in record.records
+											tr
+												th #{item.name}
+												th #{item.recorder}
+												th #{item.createAt}
+												th #{item.updateAt}
+												th
+													a(href="") 查看
+													a(href="") 修改
+													a(href="") 删除
+			//- .col-md-2(role="complementary")
+			//- 	nav.bs-docs-sidebar.hidden-print.hidden-xs.hidden-sm
+			//- 		ul.nav.bs-docs-sidenav
+			//- 			li 会议记录分类
+			//- 			ul.nav
+			//- 				li
+			//- 					a(href="") 常委会议记录
+			//- 				li
+			//- 					a(href="") 网络会议记录
+			//- 				//- 利用条件设置页面的ul列表
+			//- .col-md-10(role="main")
+			//- 	.bs-docs-section
+			//- 		h2#overview.page-header 记录
+			//- 		.table-responsive
+			//- 			table.table.table-hover.table-striped
+			//- 				thead
+			//- 					tr
+			//- 						th(width="20%") 会议记录名称
+			//- 						th(width="20%") 记录者
+			//- 						th(width="20%") 创建时间
+			//- 						th(width="20%") 修改时间
+			//- 						th(width="20%") 操作
+			//- 				tbody
+			//- 					if records
+			//- 						each record in records
+			//- 							tr
+			//- 								th #{record.name}
+			//- 								th #{record.recorder}
+			//- 								th #{record.createAt}
+			//- 								th #{record.updateAt}
+			//- 								th
+			//- 									a(href="") 查看
+			//- 									a(href="") 修改
+			//- 									a(href="") 删除

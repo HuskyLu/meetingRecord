@@ -1,0 +1,43 @@
+extends ../layout
+
+block content
+	.container
+		.row
+			.col-md-3
+			.col-md-6
+				.bs-docs-section
+					h2#overview.page-header 用户修改 : #{_user.name}
+					form(action="/user/save",method="post")
+						div(style="display:none")
+							label(for="id") id
+							input#id.form-control(name="user[_id]",type="text",value="#{_user._id}",required)
+						.form-interval
+							label(for="name") 名字
+							input#name.form-control(name="user[name]",type="text",value="#{_user.name}",placeholder="请输入用户名",required)
+						.form-interval
+							label(for="role") 权限
+							select#role.form-control(name="user[role]")
+								if _user.role == 0
+									option(value="0",selected="selected") 普通用户
+								else
+									option(value="0") 普通用户
+								if _user.role == 1
+									option(value="1",selected="selected") 部门用户
+								else
+									option(value="1") 部门用户
+								if _user.role == 2
+									option(value="2",selected="selected") 查看用户
+								else
+									option(value="2") 查看用户
+								if _user.role == 3
+									option(value="3",selected="selected") 超级管理员
+								else
+									option(value="3") 超级管理员
+						.form-interval
+							label(for="department") 部门
+							select#department.form-control(name="user[department]",value="#{_user.department}")
+								option(value="0") 老师/主席/超级管理员
+								option(value="1") XX部
+						.text-right.form-interval
+							button.btn.btn-default(type="reset") 重置表单
+							button.btn.btn-success(type="submit") 提交表单

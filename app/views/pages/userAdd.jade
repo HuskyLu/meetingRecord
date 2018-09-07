@@ -1,0 +1,31 @@
+extends ../layout
+
+block content
+	.container
+		.row
+			.col-md-3
+			.col-md-6
+				.bs-docs-section
+					h2#overview.page-header 用户添加
+					form(action="/user/save",method="post")
+						.form-interval
+							label(for="name") 名字
+							input#name.form-control(name="user[name]",type="text",placeholder="请输入用户名",required)
+						div(style="display:none;")
+							label(for="password") 密码
+							input#password.form-control(name="user[password]",type="password",value="123456",required)
+						.form-interval
+							label(for="role") 权限
+							select#role.form-control(name="user[role]")
+								option(value="0") 普通用户
+								option(value="1",selected="selected") 部门用户
+								option(value="2") 查看用户
+								option(value="3") 超级管理员
+						.form-interval
+							label(for="department") 部门
+							select#department.form-control(name="user[department]")
+								option(value="0") 老师/主席
+								option(value="1") XX部
+						.text-right.form-interval
+							button.btn.btn-default(type="reset") 重置表单
+							button.btn.btn-success(type="submit") 提交表单

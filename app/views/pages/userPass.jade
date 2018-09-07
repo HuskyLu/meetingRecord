@@ -1,0 +1,25 @@
+extends ../layout
+
+block content
+	.container
+		.row
+			.col-md-3
+			.col-md-6
+				.bs-docs-section
+					h2#overview.page-header 修改密码
+					form(action="/user/setPass",method="post")
+						div(style="display:none")
+							label(for="id") id
+							input#id.form-control(name="id",type="text",value="#{user._id}",required)
+						.form-interval
+							label(for="oldPass") 原密码
+							input#oldPass.form-control(name="oldPass",type="password",placeholder="请输入原密码",required)
+						.form-interval
+							label(for="pass") 新密码
+							input#pass.form-control(name="pass",type="password",placeholder="请输入新密码",required)
+						.form-interval
+							label(for="confirm") 确认密码
+							input#confirm.form-control(name="confirm",type="password",placeholder="请重复输入一次新密码",required)
+						.text-right.form-interval
+							button.btn.btn-default(type="reset") 重置表单
+							button.btn.btn-success(type="submit") 提交表单
