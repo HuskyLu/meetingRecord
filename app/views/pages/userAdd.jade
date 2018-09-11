@@ -13,7 +13,7 @@ block content
 							input#name.form-control(name="user[name]",type="text",placeholder="请输入用户名",required)
 						div(style="display:none;")
 							label(for="password") 密码
-							input#password.form-control(name="user[password]",type="password",value="123456",required)
+							input#password.form-control(name="user[password]",type="password",value="123456",readonly,required)
 						.form-interval
 							label(for="role") 权限
 							select#role.form-control(name="user[role]")
@@ -24,8 +24,8 @@ block content
 						.form-interval
 							label(for="department") 部门
 							select#department.form-control(name="user[department]")
-								option(value="0") 老师/主席
-								option(value="1") XX部
+								each item in department
+									option(value="#{item.department}") #{item.department}
 						.text-right.form-interval
 							button.btn.btn-default(type="reset") 重置表单
 							button.btn.btn-success(type="submit") 提交表单

@@ -1,0 +1,17 @@
+extends ../layout
+
+block content
+	.container
+		.row
+			.col-md-2
+			.col-md-8
+				.bs-docs-section
+					h1.text-center #{record.name}
+					p(style="color:#aaa;")
+						span 记录人：#{record.recorder}
+						span(style="float:right") 创建时间：#{moment(record.createAt).format('YYYY/MM/DD')}
+					- var i = 0
+					while i < record.point.length
+						h3= record.point[i]
+						p= record.content[i]
+						- i++

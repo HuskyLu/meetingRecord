@@ -10,7 +10,7 @@ block content
 					form(action="/user/setPass",method="post")
 						div(style="display:none")
 							label(for="id") id
-							input#id.form-control(name="id",type="text",value="#{user._id}",required)
+							input#id.form-control(name="id",type="text",value="#{user._id}",readonly,required)
 						.form-interval
 							label(for="oldPass") 原密码
 							input#oldPass.form-control(name="oldPass",type="password",placeholder="请输入原密码",required)

@@ -23,6 +23,15 @@ block content
 										tr(class="user-id-#{user._id}")
 											td #{user.name}
 											td #{user.department}
+											case user.role
+												when 0
+													td test
+												when 1
+													td 部门
+												when 2
+													td 老师/常委
+												when 3
+													td 超级管理员
 											td #{moment(user.meta.createAt).format('YYYY/MM/DD')}
 											td #{moment(user.meta.updateAt).format('YYYY/MM/DD')}
 											td

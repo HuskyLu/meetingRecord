@@ -11,13 +11,9 @@ nav.navbar.navbar-inverse.navbar-fixed-top.bs-docs-nav
 			ul.nav.navbar-nav
 				li
 					a(href="/home") 会议记录列表
-				if user.role == 0
-					li
-						a(href="") 添加记录
-				else if user.role == 1
-					li
-						a(href="") test
-				else if user.role == 3
+				li
+					a(href="/record/add") 记录添加
+				if user.role == 3
 					li.dropdown
 						a.dropdown-toggle(href="#",data-toggle="dropdown",role="button",aria-expanded="false") 用户管理
 							span.caret

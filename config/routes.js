@@ -10,6 +10,7 @@ module.exports = function(app) {
 		app.locals.user = _user
 		next()
 	})
+
 	//index
 	app.get('/', Index.index)
 
@@ -27,7 +28,11 @@ module.exports = function(app) {
 	//record
 	app.get('/home',User.signinRequired,Record.home)
 	app.get('/record/add',User.signinRequired,Record.add)
+	app.get('/record/change/:id',User.signinRequired,Record.change)
 	app.post('/record/save',User.signinRequired,Record.save)
+	app.get('/record/detail/:id',User.signinRequired,Record.detail)
+	app.get('/record/list',User.signinRequired,Record.recordList)
+	app.delete('/record/delete',User.signinRequired,Record.delete)
 
 	//department
 	app.get('/department/list',User.signinRequired,User.adminRequired,RecordList.list)

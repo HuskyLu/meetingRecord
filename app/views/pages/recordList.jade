@@ -1,0 +1,101 @@
+extends ../layout
+
+block content
+	.container
+		.row
+			.col-md-1
+			.col-md-10
+				.bs-docs-section
+					h2#overview.page-header 记录
+					.table-responsive
+						table.table.table-hover.table-striped
+							thead
+								tr
+									th(width="20%") 会议记录名称
+									th(width="20%") 记录者
+									th(width="20%") 创建时间
+									th(width="20%") 修改时间
+									th(width="20%") 操作
+							tbody
+								if records && records.length > 0
+									each item in records
+										tr(class="record-id-#{item._id}")
+											td #{item.name}
+											td #{item.recorder}
+											td #{moment(item.createAt).format('YYYY/MM/DD')}
+											td #{moment(item.updateAt).format('YYYY/MM/DD')}
+											td
+												a.btn.btn-primary(href="/record/detail/#{item._id}") 查看
+												span &nbsp;
+												a.btn.btn-warning(href="/record/change/#{item._id}") 修改
+												span &nbsp;
+												button.btn.btn-danger.delete(type="button",data-id="#{item._id}") 删除
+				nav
+					ul.pagination.pagination-lg
+						if totalPage < 5
+							if page == 1
+								li.disabled
+									span
+										span(aria-hidden="true") &laquo;
+							else 
+								li
+									a(href="/record/list?id=#{department}&page=#{page - 1}",aria-label="Pre")
+										span(aria-hidden="true") &laquo;
+							- var i = 1
+							while i <= totalPage
+								if i == page
+									li.active
+										span #{page}
+											span.sr-only (current)
+								else
+									li
+										a(href="/record/list?id=#{department}&page=#{i + 1}") #{i + 1}
+								- i++
+							if page == totalPage
+								li.disabled
+									span
+										span(aria-hidden="true") &raquo;
+							if page != totalPage 
+								li
+									a(href="/record/list?id=#{department}&page=#{page + 1}",aria-label="Next")
+										span(aria-hidden="true") &raquo;
+						else
+							if page == 1
+								li.disabled
+									span
+										span(aria-hidden="true") &laquo;
+							else 
+								li
+									a(href="/record/list?id=#{department}&page=#{page - 1}",aria-label="Pre")
+										span(aria-hidden="true") &laquo;
+							if page + 2 > totalPage
+								- var i = totalPage - 4
+								while i <= totalPage
+									if i == page
+										li.active
+											span #{page}
+												span.sr-only (current)
+									if i != page
+										li
+											a(href="/record/list?id=#{department}&page=#{i}") #{i}
+									- i++
+							if page - 2 < 1
+								-var i = 1
+								while i <= 5
+									if i == page
+										li.active
+											span #{page}
+												span.sr-only (current)
+									if i != page
+										li
+											a(href="/record/list?id=#{department}&page=#{i}") #{i}
+									- i++
+							if page == totalPage
+								li.disabled
+									span
+										span(aria-hidden="true") &raquo;
+							else
+								li
+									a(href="/record/list?id=#{department}&page=#{page + 1}",aria-label="Next")
+										span(aria-hidden="true") &raquo;
+	script(src="/js/record.js")

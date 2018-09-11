@@ -16,8 +16,6 @@ var UserSchema = new mongoose.Schema({
 		type: Number,
 		default: 0
 	},
-	// 0: teacher or president
-	// 1: ~~~
 	department: String,
 	meta: {
 		createAt:{

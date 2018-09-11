@@ -3,8 +3,8 @@ extends ../layout
 block content
 	.container
 		.row
-			.col-md-1
-			.col-md-10
+			.col-md-2
+			.col-md-8
 				.bs-docs-section
 					h2#overview.page-header 记录添加
 					form(action="/record/save",method="post")
@@ -16,17 +16,19 @@ block content
 							input#recorder.form-control(name="record[recorder]",type="text",placeholder="请输入记录者",required)
 						div(style="display:none;")
 							label(for="department") 部门
-							input#department.form-control(name="record[department]",type="text",value="#{department._id}",required)
+							input#department.form-control(name="record[department]",type="text",value="#{department._id}",readonly,required)
 						#point
 							.form-interval
-								label 主题 (1)
+								label(style="display:block;") 主题
+									span.glyphicon.glyphicon-remove(style="color:red;float:right;",onclick="delPoint(0)")
 								input.form-control(name="record[point]",type="text",placeholder="请输入主题内容",required)
 						button.btn.btn-primary(type="button",onclick="addPoint()",style="margin-bottom:10px") 增加&nbsp;
 							span.glyphicon.glyphicon-plus
 						#content
 							.form-interval
-								label 内容 (1)
+								label 内容
 								textarea.form-control(name="record[content]",type="text",placeholder="请输入内容",required)
 						.text-right.form-interval
+							button.btn.btn-default(type="reset") 重置表单
 							button.btn.btn-success(type="submit") 提交表单
 	script(src="/js/extendForm.js")

@@ -15,22 +15,24 @@ $(function(){
 		})
 	})
 	$('.delete').click(function(e){
-		var target = $(e.target)
-		var id = target.data('id')
-		var tr = $('.user-id-' + id)
-		$.ajax({
-			type: 'DELETE',
-			url: '/user/delete',
-			dataType: 'json',
-			data:{"id":id}
-		})
-		.done(function(results){
-			if (results.success === 1) {
-				alert("用户已删除")
-				if (tr.length > 0) {
-					tr.remove()
+		if (confirm("确定要删除用户")){
+			var target = $(e.target)
+			var id = target.data('id')
+			var tr = $('.user-id-' + id)
+			$.ajax({
+				type: 'DELETE',
+				url: '/user/delete',
+				dataType: 'json',
+				data:{"id":id}
+			})
+			.done(function(results){
+				if (results.success === 1) {
+					alert("用户已删除")
+					if (tr.length > 0) {
+						tr.remove()
+					}
 				}
-			}
-		})
+			})
+		}
 	})
 })

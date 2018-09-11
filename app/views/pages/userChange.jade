@@ -10,7 +10,7 @@ block content
 					form(action="/user/save",method="post")
 						div(style="display:none")
 							label(for="id") id
-							input#id.form-control(name="user[_id]",type="text",value="#{_user._id}",required)
+							input#id.form-control(name="user[_id]",type="text",value="#{_user._id}",readonly,required)
 						.form-interval
 							label(for="name") 名字
 							input#name.form-control(name="user[name]",type="text",value="#{_user.name}",placeholder="请输入用户名",required)
@@ -36,8 +36,8 @@ block content
 						.form-interval
 							label(for="department") 部门
 							select#department.form-control(name="user[department]",value="#{_user.department}")
-								option(value="0") 老师/主席/超级管理员
-								option(value="1") XX部
+								each item in department
+									option(value="#{item.department}") #{item.department}
 						.text-right.form-interval
 							button.btn.btn-default(type="reset") 重置表单
 							button.btn.btn-success(type="submit") 提交表单

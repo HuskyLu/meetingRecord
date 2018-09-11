@@ -1,5 +1,6 @@
 var _ = require('underscore')
 var User = require('../models/user')
+var RecordList = require('../models/recordList')
 
 //signin
 exports.signin = function(req, res) {
@@ -63,17 +64,31 @@ exports.list = function(req, res) {
 }
 //add
 exports.add = function(req,res){
-	res.render('userAdd',{
-		title: '用户添加'
+	RecordList.fetch(function(err, department){
+		if (err) {
+			console.log(err)
+		}
+		res.render('userAdd',{
+			title: '用户添加',
+			department: department
+		})
 	})
 }
 //change
 exports.change = function(req,res){
 	var id = req.params.id
 	User.findById(id,function(err,_user){
-		res.render('userChange',{
-			title: '用户修改：' + _user.name,
-			_user: _user
+		if (err) {
+			console.log(err)
+		}
+		RecordList.fetch(function(err, department){
+			if (err) {
+				console.log(err)
+			}
+			res.render('userChange',{
+				title: '用户修改：' + _user.name,
+				_user: _user
+			})
 		})
 	})
 }
