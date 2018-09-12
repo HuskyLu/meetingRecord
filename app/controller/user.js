@@ -87,7 +87,8 @@ exports.change = function(req,res){
 			}
 			res.render('userChange',{
 				title: '用户修改：' + _user.name,
-				_user: _user
+				_user: _user,
+				department: department
 			})
 		})
 	})
